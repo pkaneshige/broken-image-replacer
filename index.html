@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Service Worker for Broken Images</title>
+  </head>
+  <body>
+    <section>
+      <h1>Serve another image</h1>
+      <img src="broken-image.jpg">
+    </section>
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('./sw.js', { scope: '/' })
+          .then((reg) => {
+            console.log('Service worker registration succeeded. Scope is ' + reg.scope + '.');
+          })
+          .catch((err) => {
+            console.log('Service worker registration failed with ' + err + '.');
+          });
+      }
+    </script>
+  </body>
+</html>
